@@ -12,18 +12,34 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import com.example.anhptt.architechmvp.R;
 import com.example.anhptt.architechmvp.common.activity.BaseActivity;
+import com.example.anhptt.architechmvp.login.pojo.User;
 import com.example.anhptt.architechmvp.main.MainActivityContract;
+import com.example.anhptt.architechmvp.main.adapter.UserAdapter;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
+
+import butterknife.BindView;
 
 public class MainActivity extends BaseActivity
         implements NavigationView.OnNavigationItemSelectedListener, MainActivityContract.View {
 
     @Inject
     MainActivityContract.Presenter mPresenter;
+    @BindView(R.id.list_item)
+    ListView lvUser;
+    @BindView(R.id.progressBar2)
+    ProgressBar proBar;
+
+    private UserAdapter mUserAdapter;
+    private List<User> mUserList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +48,17 @@ public class MainActivity extends BaseActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        initViews(toolbar);
+        setupListView();
+    }
+
+    private void setupListView() {
+        mPresenter.getUserList();
+        mUserAdapter = new UserAdapter(this,0, mUserList);
+        lvUser.setAdapter(mUserAdapter);
+    }
+
+    private void initViews(Toolbar toolbar) {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,5 +150,26 @@ public class MainActivity extends BaseActivity
     @Override
     public void setPresenter(MainActivityContract.Presenter presenter) {
         this.mPresenter = presenter;
+    }
+
+    @Override
+    public void showUserList(List<User> userList) {
+        mUserList.clear();
+        mUserList.addAll(userList);
+    }
+
+    @Override
+    public void showUserListError() {
+        proBar.setVisibility(View.GONE);
+    }
+
+    @Override
+    public void showOpenLoading() {
+        proBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void showCloseLoading() {
+        proBar.setVisibility(View.GONE);
     }
 }

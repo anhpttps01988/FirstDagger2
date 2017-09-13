@@ -38,6 +38,7 @@ ext{
     daggerVersion = '2.11'
     retrofitVersion = '2.2.0'
     rxVersion = '2.0.1'
+    butterknife = '8.8.1'
 }
 
 task clean(type: Delete) {

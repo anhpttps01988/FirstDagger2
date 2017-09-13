@@ -4,6 +4,8 @@ package com.example.anhptt.architechmvp.main.dagger;
 import android.app.Activity;
 
 import com.example.anhptt.architechmvp.common.di.ActivityScoped;
+import com.example.anhptt.architechmvp.data.source.repository.LoginDataRepository;
+import com.example.anhptt.architechmvp.data.source.source.LoginDataSource;
 import com.example.anhptt.architechmvp.main.MainActivityContract;
 import com.example.anhptt.architechmvp.main.MainActivityPresenter;
 import com.example.anhptt.architechmvp.main.view.MainActivity;
@@ -26,4 +28,7 @@ public abstract class MainActivityModule {
     @Binds
     abstract Activity activity(MainActivity mainActivity);
 
+    @ActivityScoped
+    @Binds
+    abstract LoginDataSource loginDataSource(LoginDataRepository loginDataRepository);
 }

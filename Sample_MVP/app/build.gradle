@@ -38,6 +38,11 @@ dependencies {
 
     compile 'com.squareup.okhttp3:logging-interceptor:3.6.0'
 
+    //butter knife
+    compile "com.jakewharton:butterknife:$rootProject.butterknife"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.butterknife"
+    apt "com.jakewharton:butterknife-compiler:$rootProject.butterknife"
+
     // Dagger dependencies
     apt "com.google.dagger:dagger-compiler:$rootProject.daggerVersion"
     provided 'org.glassfish:javax.annotation:10.0-b28'
