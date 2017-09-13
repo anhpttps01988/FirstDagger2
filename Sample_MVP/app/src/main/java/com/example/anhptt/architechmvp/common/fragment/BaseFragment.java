@@ -1,4 +1,6 @@
 package com.example.anhptt.architechmvp.common.fragment;
 
-public class BaseFragment {
+import dagger.android.DaggerFragment;
+
+public class BaseFragment extends DaggerFragment {
 }

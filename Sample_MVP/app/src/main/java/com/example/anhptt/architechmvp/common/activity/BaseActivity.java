@@ -1,4 +1,6 @@
 package com.example.anhptt.architechmvp.common.activity;
 
-public class BaseActivity {
+import dagger.android.support.DaggerAppCompatActivity;
+
+public class BaseActivity extends DaggerAppCompatActivity {
 }

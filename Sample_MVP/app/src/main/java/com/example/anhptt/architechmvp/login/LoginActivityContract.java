@@ -1,9 +1,9 @@
-package com.example.anhptt.architechmvp.main;
+package com.example.anhptt.architechmvp.login;
 
 import com.example.anhptt.architechmvp.common.mvp.BasePresenter;
 import com.example.anhptt.architechmvp.common.mvp.BaseView;
 
-public interface MainActivityContract {
+public interface LoginActivityContract {
 
     interface View extends BaseView<Presenter>{
 

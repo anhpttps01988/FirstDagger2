@@ -1,4 +1,4 @@
-package com.example.anhptt.architechmvp.main;
+package com.example.anhptt.architechmvp.main.view;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -14,9 +14,16 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.example.anhptt.architechmvp.R;
+import com.example.anhptt.architechmvp.common.activity.BaseActivity;
+import com.example.anhptt.architechmvp.main.MainActivityContract;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+import javax.inject.Inject;
+
+public class MainActivity extends BaseActivity
+        implements NavigationView.OnNavigationItemSelectedListener, MainActivityContract.View {
+
+    @Inject
+    MainActivityContract.Presenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +49,18 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mPresenter.start();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        mPresenter.stop();
     }
 
     @Override
@@ -99,5 +118,10 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void setPresenter(MainActivityContract.Presenter presenter) {
+        this.mPresenter = presenter;
     }
 }
