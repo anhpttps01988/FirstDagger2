@@ -1,7 +1,6 @@
 package com.example.anhptt.architechmvp.data.source.local;
 
 
-import android.os.Handler;
 import android.support.annotation.NonNull;
 
 import com.example.anhptt.architechmvp.data.source.source.LoginDataSource;

@@ -1,15 +1,18 @@
-package com.example.anhptt.architechmvp.common.activity;
+package com.example.anhptt.animationmotion;
 
 import android.support.annotation.LayoutRes;
+import android.support.v7.app.AppCompatActivity;
 
 import butterknife.ButterKnife;
-import dagger.android.support.DaggerAppCompatActivity;
 
-public class BaseActivity extends DaggerAppCompatActivity {
+public class BaseActivity extends AppCompatActivity {
+
 
     @Override
     public void setContentView(@LayoutRes int layoutResID) {
         super.setContentView(layoutResID);
         ButterKnife.bind(this);
     }
+
+
 }
